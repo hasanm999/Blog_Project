@@ -1,0 +1,48 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<header id="header">
+    <div class="header-top">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-sm-6 col-6 header-top-left">
+                    <ul>
+                        <li><a href="#">Register</a></li>
+                        <li><a href="#">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container main-menu">
+        <div class="row align-items-center justify-content-between d-flex">
+            <div id="logo">
+                <a href="#"><img src="{% static "statics/img/logo.png" %}" alt="" title=""/></a>
+            </div>
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li class="menu-has-children"><a href="">Blog</a>
+                        <ul>
+                            <li><a href="#">Blog Home</a></li>
+                            <li><a href="#">Blog Single</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav><!-- #nav-menu-container -->
+        </div>
+    </div>
+</header><!-- #header -->
+
+</body>
+</html>
