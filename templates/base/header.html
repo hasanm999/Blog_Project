@@ -31,11 +31,7 @@
                 <ul class="nav-menu">
                     <li><a href="{% url 'blog:index' %}">Home</a></li>
                     <li><a href="{% url 'blog:about' %}">About</a></li>
-                    <li class="menu-has-children"><a href="#">Blog</a>
-                        <ul>
-                            <li><a href="#">Blog Home</a></li>
-                            <li><a href="#">Blog Single</a></li>
-                        </ul>
+                    <li class="menu-has-children"><a href="{% url 'blog:blog_list' %}">Blog</a>
                     </li>
                     <li><a href="{% url 'blog:contact' %}">Contact</a></li>
                 </ul>

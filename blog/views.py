@@ -13,3 +13,7 @@ def about(request):
 
 def contact(request):
     return render(request, "contact.html")
+
+
+def blog_list(request):
+    return render(request, "blog/blog-list.html")
