@@ -26,21 +26,6 @@ class Comments(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_picture = models.ImageField(upload_to='profile_pictures')
-    # username = models.CharField(max_length=50, unique=True)
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    email = models.EmailField(unique=True)
-    bio = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.user.phone_number
-
-
 class Post(models.Model):
     post_image = models.ImageField(upload_to='post_images')
     title = models.CharField(max_length=255)
