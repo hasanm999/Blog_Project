@@ -17,7 +17,7 @@
                     <p class="text-white">
                         There is a moment in the life of any aspiring astronomer that it is time to buy that first
                     </p>
-                    <a href="blog-single.html" class="primary-btn">View More</a>
+                    
                 </div>
             </div>
         </div>
@@ -36,7 +36,6 @@
                         <div class="single-post row">
                             <div class="col-lg-3  col-md-3 meta-details">
                                 <ul class="tags">
-                                    
                                     {% for cat in post.category.all %}
                                         <li>
                                             <a href="#">{{ cat.category_name }}</a>
@@ -45,7 +44,6 @@
                                     {% empty %}
                                         <li>No categories</li>
                                     {% endfor %}
-
                                 </ul>
                                 <div class="user-details row">
                                     <p class="user-name col-lg-12 col-md-12 col-6"><a
@@ -66,7 +64,7 @@
                                          src="{% static "statics/img/blog/feature-img1.jpg" %}"
                                          alt="">
                                 </div>
-                                <a class="posts-title" href="blog-single.html">
+                                <a class="posts-title" href="{% url 'blog:blog_detail' pk=post.pk %}">
                                     <h3>
                                         {{ post.title }}
                                     </h3>
@@ -78,7 +76,6 @@
                             </div>
                         </div>
                     {% endfor %}
-
                     <nav class="blog-pagination justify-content-center d-flex">
                         <ul class="pagination">
                             <li class="page-item">
@@ -95,9 +92,9 @@
                             <li class="page-item"><a href="#" class="page-link">09</a></li>
                             <li class="page-item">
                                 <a href="#" class="page-link" aria-label="Next">
-		                                    <span aria-hidden="true">
-		                                        <span class="lnr lnr-chevron-right"></span>
-		                                    </span>
+                                    <span aria-hidden="true">
+                                        <span class="lnr lnr-chevron-right"></span>
+                                    </span>
                                 </a>
                             </li>
                         </ul>

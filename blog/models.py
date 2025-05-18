@@ -5,6 +5,12 @@ from django.db import models
 
 # Create your models here.
 
+class Tag(models.Model):
+    tag_name = models.CharField(max_length=120)
+
+    def __str__(self):
+        return self.tag_name
+
 
 class Category(models.Model):
     category_name = models.CharField(max_length=255)
@@ -21,6 +27,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     category = models.ManyToManyField(Category)
+    tags = models.ManyToManyField(Tag)
     post_status = models.BooleanField(default=False)
     post_views = models.IntegerField(default=0)
 
