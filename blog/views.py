@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import *
-
+from .forms import ContactForm
 from blog.models import *
 
 
@@ -16,8 +16,8 @@ def about(request):
     return render(request, "about.html")
 
 
-def contact(request):
-    return render(request, "contact.html")
+# def contact(request):
+#     return render(request, "contact.html")
 
 
 class BlogListView(ListView):
@@ -43,3 +43,19 @@ class BlogDetailView(DetailView):
         obj.post_views += 1
         obj.save()
         return obj
+
+
+class ContactView(FormView):
+    template_name = "contact.html"
+    form_class = ContactForm
+    success_url = "/contact/"
+
+    def form_valid(self, form):
+        Contact.objects.create(
+            name=form.cleaned_data['name'],
+            email=form.cleaned_data['email'],
+            subject=form.cleaned_data['subject'],
+            message=form.cleaned_data['message']
+        )
+        return super().form_valid(form)
+
