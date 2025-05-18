@@ -23,14 +23,32 @@ def about(request):
 class BlogListView(ListView):
     model = Post
     template_name = "blog/blog-list.html"
-    queryset = Post.objects.filter(post_status=True)
     context_object_name = "posts"
+    paginate_by = 10  # اضافه کردن pagination
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        # فقط موارد اضافی را به context اضافه کنید
         context['categories'] = Category.objects.all()
-        context['posts'] = Post.objects.filter(post_status=True).order_by('-created_at')[:3]
+        context['recent_posts'] = Post.objects.filter(post_status=True).order_by('-created_at')[:3]
         return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset().filter(post_status=True)
+
+        category = self.kwargs.get("category")
+        if category:
+            queryset = queryset.filter(category__name=category)
+
+        author = self.kwargs.get("author")
+        if author:
+            queryset = queryset.filter(author__user__username=author)
+
+        tag = self.kwargs.get("tag")
+        if tag:
+            queryset = queryset.filter(tags__name=tag)
+
+        return queryset.order_by('-created_at')
 
 
 class BlogDetailView(DetailView):
@@ -43,6 +61,11 @@ class BlogDetailView(DetailView):
         obj.post_views += 1
         obj.save()
         return obj
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        return context
 
 
 class ContactView(FormView):
@@ -58,4 +81,3 @@ class ContactView(FormView):
             message=form.cleaned_data['message']
         )
         return super().form_valid(form)
-

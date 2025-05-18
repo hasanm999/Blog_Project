@@ -40,7 +40,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ["phone_number"]
 
     def __str__(self):
-        return self.phone_number
+        return self.username
 
 
 class Profile(models.Model):
