@@ -9,7 +9,7 @@
     <h4 class="tagcloud-title">Tag Clouds</h4>
     <ul>
         {% for tag in tags %}
-        	<li><a href="#">{{ tag }}</a></li>
+        	<li><a href="{% url 'blog:blog_tag' tag=tag.tag_name %}">{{ tag }}</a></li>
         {% endfor %}
     </ul>
 </div>

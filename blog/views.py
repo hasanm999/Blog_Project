@@ -27,6 +27,7 @@ class BlogListView(ListView):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.annotate(post_count=Count('post')).filter(post_count__gt=0)
         context['recent_posts'] = Post.objects.filter(post_status=True).order_by('-created_at')[:3]
+        context['tags'] = Tag.objects.all()
         return context
 
     def get_queryset(self):
