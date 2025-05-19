@@ -36,13 +36,13 @@
                         <div class="single-post row">
                             <div class="col-lg-3  col-md-3 meta-details">
                                 <ul class="tags">
-                                    {% for cat in post.category.all %}
+                                    {% for tag in post.tags.all %}
                                         <li>
-                                            <a href="#">{{ cat.category_name }}</a>
+                                            <a href="#">{{ tag.tag_name }}</a>
                                             {% if not forloop.last %}, {% endif %}
                                         </li>
                                     {% empty %}
-                                        <li>No categories</li>
+                                        <li>No Tags</li>
                                     {% endfor %}
                                 </ul>
                                 <div class="user-details row">
@@ -77,43 +77,46 @@
                         </div>
                     {% endfor %}
                     {% if is_paginated %}
-                <nav class="blog-pagination justify-content-center d-flex">
-                    <ul class="pagination">
-                        {% if page_obj.has_previous %}
-                            <li class="page-item">
-                                <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}" 
-                                   class="page-link" aria-label="Previous">
-                                    <span aria-hidden="true">
-                                        <span class="lnr lnr-chevron-left"></span>
-                                    </span>
-                                </a>
-                            </li>
-                        {% endif %}
+                        <nav class="blog-pagination justify-content-center d-flex">
+                            <ul class="pagination">
+                                {% if page_obj.has_previous %}
+                                    <li class="page-item">
+                                        <a href="?page=
+                                                {{ page_obj.previous_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}"
+                                           class="page-link" aria-label="Previous">
+                        <span aria-hidden="true">
+                            <span class="lnr lnr-chevron-left"></span>
+                        </span>
+                                        </a>
+                                    </li>
+                                {% endif %}
 
-                        {% for num in page_obj.paginator.page_range %}
-                            {% if page_obj.number == num %}
-                                <li class="page-item active"><a href="#" class="page-link">{{ num }}</a></li>
-                            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                                <li class="page-item">
-                                    <a href="?page={{ num }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}" 
-                                       class="page-link">{{ num }}</a>
-                                </li>
-                            {% endif %}
-                        {% endfor %}
+                                {% for num in page_obj.paginator.page_range %}
+                                    {% if page_obj.number == num %}
+                                        <li class="page-item active"><a href="#" class="page-link">{{ num }}</a></li>
+                                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                                        <li class="page-item">
+                                            <a href="?page=
+                                                    {{ num }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}"
+                                               class="page-link">{{ num }}</a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
 
-                        {% if page_obj.has_next %}
-                            <li class="page-item">
-                                <a href="?page={{ page_obj.next_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}" 
-                                   class="page-link" aria-label="Next">
-                                    <span aria-hidden="true">
-                                        <span class="lnr lnr-chevron-right"></span>
-                                    </span>
-                                </a>
-                            </li>
-                        {% endif %}
-                    </ul>
-                </nav>
-                {% endif %}
+                                {% if page_obj.has_next %}
+                                    <li class="page-item">
+                                        <a href="?page=
+                                                {{ page_obj.next_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}"
+                                           class="page-link" aria-label="Next">
+                        <span aria-hidden="true">
+                            <span class="lnr lnr-chevron-right"></span>
+                        </span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    {% endif %}
                 </div>
                 <div class="col-lg-4 sidebar-widgets">
                     <div class="widget-wrap">

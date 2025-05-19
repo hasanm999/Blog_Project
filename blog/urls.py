@@ -9,7 +9,7 @@ urlpatterns = [
     path('blog/list/', BlogListView.as_view(), name='blog_list'),
     path('blog/search/', BlogListView.as_view(), name='blog_search'),
     path('blog/author/<str:author>/', BlogListView.as_view(), name='blog_author'),
-    path('blog/tag/<str:tag>/', BlogListView.as_view(), name='blog_tag'),  # تغییر از tags به tag
-    path('blog/category/<str:category>/', BlogListView.as_view(), name='blog_category'),  # تغییر از category_name به category
+    path('blog/tag/<str:tag>/', BlogListView.as_view(), name='blog_tag'),
+    path('blog/category/<str:category>/', BlogListView.as_view(), name='blog_category'),
     path('blog/detail/<int:pk>/', BlogDetailView.as_view(), name='blog_detail'),
 ]
