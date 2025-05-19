@@ -28,13 +28,16 @@ class BlogListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # فقط موارد اضافی را به context اضافه کنید
         context['categories'] = Category.objects.all()
         context['recent_posts'] = Post.objects.filter(post_status=True).order_by('-created_at')[:3]
         return context
 
     def get_queryset(self):
         queryset = super().get_queryset().filter(post_status=True)
+
+        search_query = self.request.GET.get('search')
+        if search_query:
+            queryset = queryset.filter(title__icontains=search_query)
 
         category = self.kwargs.get("category")
         if category:
@@ -81,3 +84,9 @@ class ContactView(FormView):
             message=form.cleaned_data['message']
         )
         return super().form_valid(form)
+
+
+class SearchView(ListView):
+    model = Post
+    queryset = Post.objects.filter(title__icontains='title')
+    template_name = "blog/blog_search_widget.html"
