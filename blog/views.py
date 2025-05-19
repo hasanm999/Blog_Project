@@ -46,7 +46,7 @@ class BlogListView(ListView):
 
         tag = self.kwargs.get("tag")
         if tag:
-            queryset = queryset.filter(tags__name=tag)
+            queryset = queryset.filter(tags__tag_name=tag)
 
         return queryset.order_by('-created_at')
 
