@@ -38,7 +38,7 @@ class BlogListView(ListView):
 
         category = self.kwargs.get("category")
         if category:
-            queryset = queryset.filter(category__name=category)
+            queryset = queryset.filter(category__category_name=category)
 
         author = self.kwargs.get("author")
         if author:
