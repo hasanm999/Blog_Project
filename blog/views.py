@@ -10,18 +10,18 @@ from blog.models import *
 # Create your views here.
 
 def index(request):
-    return render(request, "landing_page.html")
+    return render(request, "landing_page/landing_page.html")
 
 
 def about(request):
-    return render(request, "about.html")
+    return render(request, "landing_page/about.html")
 
 
 class BlogListView(ListView):
     model = Post
     template_name = "blog/blog-list.html"
     context_object_name = "posts"
-    paginate_by = 2
+    paginate_by = 3
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -71,7 +71,7 @@ class BlogDetailView(DetailView):
 
 
 class ContactView(FormView):
-    template_name = "contact.html"
+    template_name = "landing_page/contact.html"
     form_class = ContactForm
     success_url = "/contact/"
 
