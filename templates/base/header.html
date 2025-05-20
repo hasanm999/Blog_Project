@@ -1,44 +1,97 @@
 {% load static %}
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travelista</title>
+    <style>
+        /* استایل مشترک برای همه لینک‌ها و دکمه‌ها */
+        .auth-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .auth-link {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        
+        .auth-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* استایل دکمه Logout که شبیه لینک نمایش داده می‌شود */
+        .logout-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font: inherit;
+            padding: 5px 10px;
+            margin: 0;
+        }
+        
+        /* استایل نام کاربری */
+        .username {
+            color: white;
+            font-weight: 500;
+            padding: 5px 10px;
+        }
+    </style>
 </head>
 <body>
-<header id="header">
-    <div class="header-top">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-sm-6 col-6 header-top-left">
-                    <ul>
-                        <li><a href="#">Register</a></li>
-                        <li><a href="#">Login</a></li>
-                    </ul>
+    <header id="header">
+        <div class="header-top">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-sm-6 col-6 header-top-left">
+                        <ul class="auth-links">
+                            {% if request.user.is_authenticated %}
+                                <li><span class="username">{{ request.user.username }}</span></li>
+                                <li>
+                                    <form action="{% url 'account:logout' %}" method="post" style="display: inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="auth-link logout-btn">
+                                            Logout
+                                        </button>
+                                    </form>
+                                </li>
+                            {% else %}
+                                <li><a href="{% url 'account:register' %}" class="auth-link">Register</a></li>
+                                <li><a href="{% url 'account:login' %}" class="auth-link">Login</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container main-menu">
-        <div class="row align-items-center justify-content-between d-flex">
-            <div id="logo">
-                <a href="#"><img src="{% static "statics/img/logo.png" %}" alt="" title=""/></a>
+        
+        <div class="container main-menu">
+            <div class="row align-items-center justify-content-between d-flex">
+                <div id="logo">
+                    <a href="{% url 'blog:index' %}">
+                        <img src="{% static 'statics/img/logo.png' %}" alt="Travelista Logo">
+                    </a>
+                </div>
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                        <li><a href="{% url 'blog:index' %}">Home</a></li>
+                        <li><a href="{% url 'blog:about' %}">About</a></li>
+                        <li class="menu-has-children"><a href="{% url 'blog:blog_list' %}">Blog</a></li>
+                        <li><a href="{% url 'blog:contact' %}">Contact</a></li>
+                    </ul>
+                </nav>
             </div>
-            <nav id="nav-menu-container">
-                <ul class="nav-menu">
-                    <li><a href="{% url 'blog:index' %}">Home</a></li>
-                    <li><a href="{% url 'blog:about' %}">About</a></li>
-                    <li class="menu-has-children"><a href="{% url 'blog:blog_list' %}">Blog</a>
-                    </li>
-                    <li><a href="{% url 'blog:contact' %}">Contact</a></li>
-                </ul>
-            </nav><!-- #nav-menu-container -->
         </div>
-    </div>
-</header><!-- #header -->
-
+    </header>
 </body>
 </html>
