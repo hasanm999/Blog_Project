@@ -1,6 +1,10 @@
-# Blog_Project
+# Blog Project
 
 A simple blog application built with the Django framework. Users can register, log in, create and delete their own posts. User management (adding/removing users) is handled exclusively by the site admin.
+
+![Python](https://img.shields.io/badge/Python-3.10+-blue)
+![Django](https://img.shields.io/badge/Django-4.x-green)
+![Status](https://img.shields.io/badge/status-developing-yellow)
 
 ## Features
 
@@ -57,11 +61,10 @@ Admin panel URL: http://127.0.0.1:8000/admin/
 
 
 
-##Development Status
+<u>## Development Status</u>
 
 The project is currently under active development on the develop branch. API functionality and other features are planned for future updates.
 
-
-##Contributions
+<u>## Contributions</u>
 
 Contributions are welcome! Feel free to open issues or submit a pull request.
