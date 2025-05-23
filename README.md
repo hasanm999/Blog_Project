@@ -57,11 +57,11 @@ Admin panel URL: http://127.0.0.1:8000/admin/
 
 
 
-Development Status
+##Development Status
 
 The project is currently under active development on the develop branch. API functionality and other features are planned for future updates.
 
 
-Contributions
+##Contributions
 
 Contributions are welcome! Feel free to open issues or submit a pull request.
